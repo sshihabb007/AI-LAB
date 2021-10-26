@@ -1,0 +1,157 @@
+#include <bits/stdc++.h>
+#include <iostream>
+
+using namespace std;
+
+int queen[8][8];
+
+bool QueenCheck(int x,int y)
+{
+    int a=x;
+    int b=y;
+
+    for(int i=b+1;i<8;i++)
+    {
+            if(queen[a][i]==1)
+               {
+              //  cout<<"Not possible";
+             //   break;
+             return false;
+               }
+
+    }
+
+    //********************************
+
+    for(int i=a+1,j=b+1; i<8 && j<8; i++,j++)
+    {
+
+            if(queen[i][j]==1)
+                {
+             //   cout<<"not Possible";
+             //   break;
+             return false;
+                }
+    }
+
+    for(int i=a+1;i<8;i++)
+    {
+            if(queen[i][b]==1)
+                {
+              //  cout<<"Not possible";
+              //  break;
+              return false;
+                }
+    }
+
+    for(int i=a+1,j=b-1;i<8 && j>=0;i++,j-- )
+    {
+        if(queen[i][j]==1)
+            {
+         //   cout<<"Not possible";
+          //  break;
+          return false;
+            }
+    }
+
+     for(int i=b-1;i>=0;i--)
+    {
+        if(i<8)
+        {
+            if(queen[a][i]==1)
+                {
+              //  cout<<"Not possible";
+              //  break;
+              return false;
+                }
+        }
+    }
+
+
+     for(int i=a-1,j=b-1; i>=0 && j>=0; i--,j--)
+    {
+        if(i<8 && j<8)
+        {
+            if(queen[i][j]==1)
+                {
+            //    cout<<"not Possible";
+            //    break;
+            return false;
+                }
+        }
+    }
+
+
+        for(int i=a-1;i>=0;i--)
+    {
+        if(i<8)
+        {
+            if(queen[i][b]==1)
+                {
+              //  cout<<"Not possible";
+           //     break;
+           return false;
+                }
+        }
+    }
+
+    for(int i=a-1,j=b+1;i>=0 && j<8;i--,j++ )
+    {
+        if(queen[i][j]==1)
+           {
+         //   cout<<"Not possible";
+          //  break;
+          return false;
+           }
+    }
+
+    queen[x][y]=1;
+   // cout<<"\nQueen Placed at ("<<x<<","<<y<<") position";
+    return true;
+
+}
+
+void disp()
+{
+    cout<<"\n";
+    for(int i=0;i<8;i++)
+        {
+            for(int j=0;j<8;j++)
+            {
+                cout<<queen[i][j];
+            }
+            cout<<"\n";
+        }
+}
+
+
+    int main()
+    {
+        int r,c;
+
+
+        for(int i=0;i<8;i++)
+        {
+            for(int j=0;j<8;j++)
+            {
+                queen[i][j]=0;
+            }
+        }
+
+        while(1)
+        {
+        cout<<"\nInput row and column : ";
+        cin>>r>>c;
+
+        if(QueenCheck(r,c)==false)
+        cout<<"\nPlacement Not possible ! ! !\n Try Again\n";
+        else
+            {
+            QueenCheck(r,c);
+            cout<<"\nQueen Placed at ("<<r<<","<<c<<") position";
+            disp();
+            }
+
+        }
+
+    }
